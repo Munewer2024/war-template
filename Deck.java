@@ -70,6 +70,9 @@ public class Deck
      */
     public Card dealCardFromDeck() {
         // To be written 
+        if (cards.size() > 0) {
+            return cards[0];
+        }
         return null;
     }
     
