@@ -1,6 +1,8 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
+
 /**
  * Emulate a deck of cards
  *
@@ -29,6 +31,9 @@ public class Deck
                 this.cards.add(c);
             }
         }
+        for (Card i : cards) {
+            System.out.println(i.getRank() + " " + i.getFace() + " " + i.getSuit());
+        }
     }
 
     /**
@@ -44,7 +49,13 @@ public class Deck
      * Shuffles the cards in the deck
      */
     public void shuffle() {
-        
+        initializeNewDeck();
+        for (Card i : cards) {
+            Card newCard = new Card(i.getRank(), i.getFace(), i.getSuit());
+            Card j = newCard;
+            this.cards.add(j);
+            System.out.println(j.getRank() + " " + j.getFace() + " " + j.getSuit());
+        }
     }
     
     /**
@@ -80,8 +91,7 @@ public class Deck
      */
     public void addCardToDeck(Card cardToAdd) {
         // To be written
-        int length = cards.size();
-        this.cards.add(cards.size() + 1, cardToAdd);
+        this.cards.add(cardToAdd);
     }
     
 }
