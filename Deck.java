@@ -1,7 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 
 /**
  * Emulate a deck of cards
@@ -31,9 +30,6 @@ public class Deck
                 this.cards.add(c);
             }
         }
-        for (Card i : cards) {
-            System.out.println(i.getRank() + " " + i.getFace() + " " + i.getSuit());
-        }
     }
 
     /**
@@ -50,14 +46,30 @@ public class Deck
      */
     public void shuffle() {
         initializeNewDeck();
+        List<Integer> randomNumbers = new ArrayList();
+        for (int i = 0; i < this.cards.size(); i++) {
+            int j = (int)(Math.random() * this.cards.size());
+            if (randomNumbers.contains(j)) {
+                j = (int)(Math.random() * this.cards.size());
+                i--;
+                continue;
+            }
+            Card oldCard = this.cards.get(i);
+            Card newCard = this.cards.get(j);
+            this.cards.remove(oldCard);
+            this.cards.add(i, newCard);
+            randomNumbers.add(j);
+        }
         for (Card i : cards) {
-            Card newCard = new Card(i.getRank(), i.getFace(), i.getSuit());
-            Card j = newCard;
-            this.cards.add(j);
-            System.out.println(j.getRank() + " " + j.getFace() + " " + j.getSuit());
+            System.out.println(i.getRank() + " " + i.getFace() + " " + i.getSuit());
+        }
+        System.out.println("\n");
+        System.out.println(this.cards.size());
+        System.out.println("\n");
+        for (int i : randomNumbers) {
+            System.out.println(i);
         }
     }
-    
     /**
      * Deal all the cards in the deck to make two new decks of cards
      * 
@@ -81,8 +93,8 @@ public class Deck
      */
     public Card dealCardFromDeck() {
         // To be written
-        initializeNewDeck();
-        return this.cards.get(0);
+        Card card = this.cards.get(0);
+        return card;
     }
     
     /**
