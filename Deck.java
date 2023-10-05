@@ -49,14 +49,13 @@ public class Deck
         List<Integer> randomNumbers = new ArrayList();
         for (int i = 0; i < this.cards.size(); i++) {
             int j = (int)(Math.random() * this.cards.size());
-            if (randomNumbers.contains(j)) {
-                j = (int)(Math.random() * this.cards.size());
+            Card oldCard = this.cards.get(i);
+            Card newCard = this.cards.get(j);
+            if (oldCard == newCard) {
                 i--;
                 continue;
             }
-            Card oldCard = this.cards.get(i);
-            Card newCard = this.cards.get(j);
-            this.cards.remove(oldCard);
+            this.cards.remove(i);
             this.cards.add(i, newCard);
             randomNumbers.add(j);
         }
@@ -64,7 +63,7 @@ public class Deck
             System.out.println(i.getRank() + " " + i.getFace() + " " + i.getSuit());
         }
         System.out.println("\n");
-        System.out.println(this.cards.size());
+        System.out.println(randomNumbers.size());
         System.out.println("\n");
         for (int i : randomNumbers) {
             System.out.println(i);
