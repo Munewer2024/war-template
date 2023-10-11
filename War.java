@@ -26,7 +26,8 @@ public class War
      * from the War flowchart you created for this game
      */
     public void runEventLoop() {
-
+        System.out.println("War has started between Player One and Player Two!");
+        System.out.println("--------------------------------------------------");
     }
     
     /**

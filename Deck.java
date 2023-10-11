@@ -47,27 +47,18 @@ public class Deck
     public void shuffle() {
         initializeNewDeck();
         List<Integer> randomNumbers = new ArrayList();
+        List<Card> shuffledCards = new ArrayList();
         for (int i = 0; i < this.cards.size(); i++) {
             int j = (int)(Math.random() * this.cards.size());
-            Card oldCard = this.cards.get(i);
             Card newCard = this.cards.get(j);
-            if (oldCard == newCard) {
+            if (randomNumbers.contains(j)) {
                 i--;
                 continue;
             }
-            this.cards.remove(i);
-            this.cards.add(i, newCard);
+            shuffledCards.add(i, newCard);
             randomNumbers.add(j);
         }
-        for (Card i : cards) {
-            System.out.println(i.getRank() + " " + i.getFace() + " " + i.getSuit());
-        }
-        System.out.println("\n");
-        System.out.println(randomNumbers.size());
-        System.out.println("\n");
-        for (int i : randomNumbers) {
-            System.out.println(i);
-        }
+        this.cards = shuffledCards;
     }
     /**
      * Deal all the cards in the deck to make two new decks of cards
@@ -93,6 +84,7 @@ public class Deck
     public Card dealCardFromDeck() {
         // To be written
         Card card = this.cards.get(0);
+        this.cards.remove(0);
         return card;
     }
     
