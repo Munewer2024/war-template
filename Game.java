@@ -40,23 +40,31 @@ public class Game
             Card playerTwoCard = playerTwo.dealCardFromDeck();
             
             if (playerOne.getDeckSize() == 0) {
-                System.out.println("Player Two has won the game!");
-                break;
+                if (playerOne.getWinningPileSize() == 0) {
+                    System.out.println("Player Two has won the game!");
+                    break;
+                } else {
+                    playerTwo.winningPileToDeck();
+                    playerOne.shuffleWinningPile();
+                }
             }
             if (playerTwo.getDeckSize() == 0) {
-                System.out.println("Player One has won the game!");
-                break;
+                if (playerTwo.getWinningPileSize() == 0) {
+                    System.out.println("Player One has won the game!");
+                    break;
+                } else {
+                    playerTwo.winningPileToDeck();
+                    playerTwo.shuffleWinningPile();
+                }
             }
             
             if (playerOneCard.getRank() > playerTwoCard.getRank()) {
-                playerOne.addCardToDeck(playerOneCard);
-                playerOne.addCardToDeck(playerTwoCard);
+                playerOne.addToWinningPile(playerOneCard, playerTwoCard);
                 System.out.println("Player One Won! Player One's Card: " + playerOneCard.getRank() + " " + playerOneCard.getFace() + " " + playerOneCard.getSuit() + " Player Two's Card: " + playerTwoCard.getRank() + " " + playerTwoCard.getFace() + " " + playerTwoCard.getSuit());
                 System.out.println("-------------------------------------------------------");
             }
             if (playerTwoCard.getRank() > playerOneCard.getRank()) {
-                playerTwo.addCardToDeck(playerOneCard);
-                playerTwo.addCardToDeck(playerTwoCard);
+                playerTwo.addToWinningPile(playerTwoCard, playerOneCard);
                 System.out.println("Player Two Won! Player Two's Card: " + playerTwoCard.getRank() + " " + playerTwoCard.getFace() + " " + playerTwoCard.getSuit() + " Player One's Card: " + playerOneCard.getRank() + " " + playerOneCard.getFace() + " " + playerOneCard.getSuit());                
                 System.out.println("-------------------------------------------------------");
             }

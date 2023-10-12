@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class Deck
 {
     private List<Card> cards;
-
+    
     /**
      * Deck constructor: Create an empty deck of cards
      */
@@ -86,6 +86,14 @@ public class Deck
         Card card = this.cards.get(0);
         this.cards.remove(0);
         return card;
+    }
+    
+    /**
+     * Adds the winning pile to the deck
+     * @param winningPile: winning pile to add to the deck
+     */
+    public void winningPileToDeck(List<Card> winningPile) {
+        this.cards = winningPile;
     }
     
     /**
