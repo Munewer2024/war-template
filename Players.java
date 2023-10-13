@@ -74,10 +74,12 @@ public class Players
      */
     public void winningPileToDeck() {
         player.winningPileToDeck(this.winningPile);
+        this.winningPile.clear();
     }
     /**
      * Add cards to the winning pile
-     * @params yourCard: The card the player placed & opponentCard: The card the opponent player placed
+     * @param yourCard: The card the player placed 
+     * @param opponentCard: The card the opponent player placed
      */
     public void addToWinningPile(Card yourCard, Card opponentCard) {
         this.winningPile.add(yourCard);

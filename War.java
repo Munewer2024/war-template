@@ -28,6 +28,7 @@ public class War
     public void runEventLoop() {
         System.out.println("War has started between Player One and Player Two!");
         System.out.println("--------------------------------------------------");
+        
     }
     
     /**
