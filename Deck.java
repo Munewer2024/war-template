@@ -93,7 +93,8 @@ public class Deck
      * @param winningPile: winning pile to add to the deck
      */
     public void winningPileToDeck(List<Card> winningPile) {
-        this.cards = winningPile;
+        this.cards.clear();
+        this.cards.addAll(winningPile);
     }
     
     /**

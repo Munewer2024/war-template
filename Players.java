@@ -30,6 +30,14 @@ public class Players
         return player.getDeckSize();
     }
     /**
+     * 
+     */
+    public void initializeDeck() {
+        player.initializeNewDeck();
+        player.shuffle();
+        Deck[0] = player.dealDeck();
+    }
+    /**
      * Get the number of cards in the winning pile
      * 
      * @returns The number of cards in the winning pile

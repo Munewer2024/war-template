@@ -32,8 +32,8 @@ public class Game
     public void starter()
     {
         // put your code here
-        playerOne.shuffle();
-        playerTwo.shuffle();
+        playerOne.initializeDeck();
+        playerTwo.initializeDeck();
         
         for (int i = 0; i < 300; i++) {
             if (playerOne.getDeckSize() == 0) {
