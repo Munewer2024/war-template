@@ -34,8 +34,15 @@ public class Players
      */
     public void initializeDeck() {
         player.initializeNewDeck();
+        int card = 0;
+        for (int i = 0; i < 52; i++) {
+            if (i % 2 == 1) {
+                Card tempCard = player.cards.get(i);
+                player.cards.add(card, tempCard);
+                card++;
+            }
+        }
         player.shuffle();
-        Deck[0] = player.dealDeck();
     }
     /**
      * Get the number of cards in the winning pile

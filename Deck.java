@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class Deck
 {
-    private List<Card> cards;
+    public List<Card> cards;
     
     /**
      * Deck constructor: Create an empty deck of cards

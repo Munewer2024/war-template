@@ -8,8 +8,8 @@
 public class Game
 {
     // instance variables - replace the example below with your own int x;
-    private Players playerOne;
-    private Players playerTwo;
+    public Players playerOne;
+    public Players playerTwo;
     private War war;
     private Deck test;
     /**
