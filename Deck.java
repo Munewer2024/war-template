@@ -45,7 +45,6 @@ public class Deck
      * Shuffles the cards in the deck
      */
     public void shuffle() {
-        initializeNewDeck();
         List<Integer> randomNumbers = new ArrayList();
         List<Card> shuffledCards = new ArrayList();
         for (int i = 0; i < this.cards.size(); i++) {

@@ -12,6 +12,7 @@ public class Players
     // instance variables - replace the example below with your own
     private Deck player;
     private List<Card> winningPile;
+    public List<Card> cards;
     /**
      * Constructor for objects of class Players
      */
@@ -19,6 +20,7 @@ public class Players
     {
         // initialise instance variables
         player = new Deck();
+        cards = player.cards;
         winningPile = new ArrayList<Card>();
     }
     /**
@@ -28,21 +30,6 @@ public class Players
      */
     public int getDeckSize() {
         return player.getDeckSize();
-    }
-    /**
-     * 
-     */
-    public void initializeDeck() {
-        player.initializeNewDeck();
-        int card = 0;
-        for (int i = 0; i < 52; i++) {
-            if (i % 2 == 1) {
-                Card tempCard = player.cards.get(i);
-                player.cards.add(card, tempCard);
-                card++;
-            }
-        }
-        player.shuffle();
     }
     /**
      * Get the number of cards in the winning pile
@@ -99,5 +86,18 @@ public class Players
     public void addToWinningPile(Card yourCard, Card opponentCard) {
         this.winningPile.add(yourCard);
         this.winningPile.add(opponentCard);
+    }
+    /**
+     * 
+     */
+    public void addToWinningPileWar(Card winningCard) {
+        this.winningPile.add(winningCard);
+    }
+    /**
+     * Adds the provided card to the deck
+     * @param cardToAdd: Card to add to this deck
+     */
+    public void addCardToDeck(Card cardToAdd) {
+        player.cards.add(cardToAdd);
     }
 }
