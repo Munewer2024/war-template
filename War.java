@@ -1,4 +1,5 @@
-
+import java.util.List;
+import java.util.ArrayList;
 /**
  * Write a description of class War here.
  *
@@ -72,6 +73,7 @@ public class War
             }
             if (playerOneCard.getRank() == playerTwoCard.getRank()) {
                 boolean war = true;
+                List<Card> warWinnings = new ArrayList<Card>();
                 while (war) {
                     System.out.println("War has started between Player One and Player Two!");
                     System.out.println("--------------------------------------------------");
@@ -87,24 +89,48 @@ public class War
                         i = 299;
                         break;
                     }
-                    Card oneFourthCard = playerOne.cards.get(3);
-                    Card twoFourthCard = playerTwo.cards.get(3);
+                    for (int j = 0; j < 4; j++) {
+                        if (playerOne.getDeckSize() == 0) {
+                            playerOne.shuffleWinningPile();
+                            playerOne.winningPileToDeck();
+                        }
+                        if (playerTwo.getDeckSize() == 0) {
+                            playerTwo.shuffleWinningPile();
+                            playerTwo.winningPileToDeck();
+                        }
+                        Card card = playerOne.dealCardFromDeck();
+                        Card cardTwo = playerTwo.dealCardFromDeck();
+                        warWinnings.add(card);
+                        warWinnings.add(cardTwo);
+                    }
+                    if (playerOne.getDeckSize() == 0) {
+                            playerOne.shuffleWinningPile();
+                            playerOne.winningPileToDeck();
+                    }
+                    if (playerTwo.getDeckSize() == 0) {
+                            playerTwo.shuffleWinningPile();
+                            playerTwo.winningPileToDeck();
+                    }
+                    Card oneFourthCard = playerOne.dealCardFromDeck();
+                    Card twoFourthCard = playerOne.dealCardFromDeck();
+                    warWinnings.add(oneFourthCard);
+                    warWinnings.add(twoFourthCard);
                     if (oneFourthCard.getRank() > twoFourthCard.getRank()) {
                         System.out.println("Player One has won the war!");
                         System.out.println("--------------------------------------------------");
-                        for (int j = 0; j < 4; j++) {
-                            playerOne.addToWinningPileWar(playerOne.cards.get(j));
-                            playerOne.addToWinningPileWar(playerTwo.cards.get(j));
+                        for (int j = 0; j < warWinnings.size(); j++) {
+                            playerOne.addToWinningPileWar(warWinnings.get(j));
                         }
+                        warWinnings.clear();
                         war = false;
                     }
                     if (oneFourthCard.getRank() < twoFourthCard.getRank()) {
                         System.out.println("Player Two has won the war!");
                         System.out.println("--------------------------------------------------");
-                        for (int j = 0; j < 4; j++) {
-                            playerTwo.addToWinningPileWar(playerTwo.cards.get(j));
-                            playerTwo.addToWinningPileWar(playerOne.cards.get(j));
+                        for (int j = 0; j < warWinnings.size(); j++) {
+                            playerTwo.addToWinningPileWar(warWinnings.get(j));
                         }
+                        warWinnings.clear();
                         war = false;
                     }
                     if (oneFourthCard.getRank() == twoFourthCard.getRank()) {
@@ -112,6 +138,9 @@ public class War
                         System.out.println("--------------------------------------------------");
                     }
                 }
+            }
+            if (i == 299) {
+                System.out.println("Game is over!");
             }
         }
     }
